@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="ViewVMWPF.Views.ExchangeRates"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ViewVMWPF.Views"
+             xmlns:vm="clr-namespace:ViewVMWPF.ViewModels"
+             xmlns:json="clr-namespace:ViewVMWPF.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid >
+        <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                      CanContentScroll="True"
+                      MaxHeight="400"
+                      PanningMode="VerticalOnly">
+            <TreeView x:Name="MainTreeView" HorizontalAlignment="Stretch" 
+                      Margin="10" VerticalAlignment="Stretch" 
+                      ItemsSource="{Binding SourceQuotes}"
+                      >
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding QuotesList}">
+                        <TextBlock Text="{Binding Name}" />
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding NameAndValue}" />
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
