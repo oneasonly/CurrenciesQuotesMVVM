@@ -116,9 +116,8 @@ namespace ViewVMWPF.ViewModels
             foreach (CbrValute item in unionList)
             {
                 //QuotLine
-                Quotes quot = new Quotes("rub");
+                Quotes quot = new Quotes();
                 quot.MainCurrency = item;
-                quot.RelativeCurrencies = new ObservableCollection<CbrValute>(unionList);
                 foreach (CbrValute item2 in unionList)
                 {
                     if(item != item2)

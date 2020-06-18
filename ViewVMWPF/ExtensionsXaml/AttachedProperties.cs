@@ -37,13 +37,10 @@ namespace ViewVMWPF.ExtensionsXaml
             var listBox = obj as ListBox;
             IList selectedItems = e.NewValue as IList;
 
-            //  If you want to go both ways and have changes to 
-            //  this collection reflected back into the listbox...
             if (selectedItems is INotifyCollectionChanged)
             {
                 (selectedItems as INotifyCollectionChanged).CollectionChanged += (s, e3) =>
                 {
-                    //  Haven't tested this branch -- good luck!
                     if (null != e3.OldItems)
                         foreach (var item in e3.OldItems)
                             listBox.SelectedItems.Remove(item);
@@ -57,13 +54,6 @@ namespace ViewVMWPF.ExtensionsXaml
             {
                 if (selectedItems.Count > 0)
                 {
-                    //  Minor problem here: This doesn't work for initializing a 
-                    //  selection on control creation. 
-                    //  When I get here, it's because I've initialized the selected 
-                    //  items collection that I'm binding. But at that point, lb.Items 
-                    //  isn't populated yet, so adding these items to lb.SelectedItems 
-                    //  always fails. 
-                    //  Haven't tested this otherwise -- good luck!
                     listBox.SelectedItems.Clear();
                     foreach (var item in selectedItems)
                         listBox.SelectedItems.Add(item);

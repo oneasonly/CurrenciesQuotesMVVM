@@ -10,21 +10,16 @@ namespace ViewVMWPF.Classes
 {
     public class Quotes
     {
-        public Quotes(string CharCodeDefaultValute)
+
+        public Quotes()
         {
-            string _charCodeDefaultValute = CharCodeDefaultValute?.ToUpper();
         }
-        private string _charCodeDefaultValute;
         public CbrValute MainCurrency { get; set; }
-        public ObservableCollection<CbrValute> RelativeCurrencies { get; set; } = new ObservableCollection<CbrValute>();
+
         public ObservableCollection<PairValute> QuotesList { get; set; } = new ObservableCollection<PairValute>();
 
         public string Name => MainCurrency.CharCode;
 
 
-        void hz()
-        {
-            //RelativeCurrencies.ForEach(x=>x.)
-        }
     }
 }
