@@ -12,13 +12,37 @@ namespace Model
 {
     public class ModelCurrencies
     {
-        private string url = @"https://www.cbr-xml-daily.ru/daily_json.js";
-        private readonly List<int> _predefinedCurrencies = new List<int>() { 840 };
+        #region const/readonly
+        private const string url = @"https://www.cbr-xml-daily.ru/daily_json.js";
+        private readonly List<int> _preferedCurrencyCodes = new List<int>() { 840 };
+        private readonly CbrValute _defaultCurrency = new CbrValute
+        {
+            CharCode = "RUB",
+            NumCode = 643,
+            ID = "empty",
+            Nominal = 1,
+            Name = "Российский рубль",
+            Value = 1,
+            Previous = 1
+        };
+        #endregion
+
+        #region Properties
+        public List<int> PreferedCurrencyCodes => _preferedCurrencyCodes;
+        public CbrValute DefaultCurrency => _defaultCurrency;
+        #endregion
+
+        #region public Methods
+        public async Task<Cbr> GetResponseJsonWithDefault()
+        {
+            var item = await GetResponseJson();
+            item.Valute.Add(item.Valute.Count.ToString(), DefaultCurrency);
+            return item;
+        }
         public async Task<Cbr> GetResponseJson()
         {
             string ResponseString = await GetResponseString();
             Cbr currencies = await Task.Run(()=>JsonConvert.DeserializeObject<Cbr>(ResponseString));
-            var select = currencies.Valute.Values.Select(x => $"{x.NumCode} {x.CharCode}").ToList();
             return currencies;
         }
 
@@ -30,7 +54,6 @@ namespace Model
                 return await response.Content.ReadAsStringAsync();
             }
         }
-
-        public List<int> PredefinedCurrencies => _predefinedCurrencies;
+        #endregion
     }
 }
