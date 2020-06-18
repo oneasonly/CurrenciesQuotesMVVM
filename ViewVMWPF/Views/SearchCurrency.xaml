@@ -11,9 +11,15 @@
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding InputSearch, UpdateSourceTrigger=PropertyChanged}"
                      Width="100"/>
-                <Button Content="Поиск" Command="SearchCommand"/>
+                <Button Content="Поиск" Command="{Binding SearchCommand}"/>
             </StackPanel>
-            <ListView ItemsSource="{Binding ResultSearch}"/>
+            <ListView ItemsSource="{Binding SearchQuotesResult}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding NameAndValue}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
           
     </Grid>

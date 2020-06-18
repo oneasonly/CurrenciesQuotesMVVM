@@ -37,12 +37,14 @@ namespace ViewVMWPF.ViewModels
         private List<CbrValute> _preferedCurrencies = new List<CbrValute>();
         #endregion
 
-        #region Properties
+        #region child ViewModels
         public CodesCurrencyViewModel VMCodesCurrency { get; }
         public ExchangeRatesViewModel VMExchangeRate { get; }
         public SearchCurrencyViewModel VMSearchCurrency { get; }
         public ConversionViewModel VMConversion { get; }
+        #endregion
 
+        #region Properties
         public Cbr ResponseRoot
         {
             get => _responseRoot;
@@ -82,20 +84,23 @@ namespace ViewVMWPF.ViewModels
         private async Task GetRootResponse()
         {
             ResponseRoot = await _model.GetResponseJsonWithDefault();
-            SetPreferedCurrencies();
+            BuildPreferedCurrencies();
         }
 
-        private void SetPreferedCurrencies()
+        private void BuildPreferedCurrencies()
         {
             PreferedCurrenies.Clear();
             PreferedCurrenies.Add(_model.DefaultCurrency);
             var preferedRange = AllValutes.Where(x => _model.PreferedCurrencyCodes.Contains(x.NumCode));
             PreferedCurrenies.AddRange(preferedRange);
+
+            VMSearchCurrency.PreferedCurrenies = PreferedCurrenies;
         }
 
         private void SetAllValutesFromResponse()
         {
             VMCodesCurrency.SourceValutes = AllValutes;
+            VMSearchCurrency.AllValutes = AllValutes;
             OnAllAndSelectedValutesChanged();
         }
         private void OnSelectedValutesChanged()
