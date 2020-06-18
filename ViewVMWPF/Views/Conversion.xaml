@@ -22,7 +22,7 @@
                 </ComboBox>
 
                 <TextBox Text="{Binding CurrencyAmount1, UpdateSourceTrigger=PropertyChanged
-                    , StringFormat=0.####, Delay=160}" Width="150">
+                    , StringFormat=0.####, Delay=160}" Width="150" Margin="15 0 0 5">
                 </TextBox>
             </StackPanel>
             
@@ -38,7 +38,7 @@
                 </ComboBox>
 
                 <TextBox Text="{Binding CurrencyAmount2, UpdateSourceTrigger=PropertyChanged
-                    , StringFormat=0.####, Delay=160}" Width="150">
+                    , StringFormat=0.####, Delay=160}" Width="150" Margin="15 0 0 5">
                 </TextBox>
             </StackPanel>
             

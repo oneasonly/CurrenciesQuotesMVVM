@@ -42,8 +42,8 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Обновлено:"/>
+            <StackPanel Orientation="Horizontal" Margin="10 0 0 -8">
+                <Label Content="Обновлено:"/>
                 <Label Content="{Binding ResponseRoot}">
                     <Label.ContentTemplate>
                         <DataTemplate>

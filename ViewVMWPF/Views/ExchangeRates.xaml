@@ -11,7 +11,7 @@
     <Grid >
         <ScrollViewer VerticalScrollBarVisibility="Auto" 
                       CanContentScroll="True"
-                      MaxHeight="400"
+                      MaxHeight="300"
                       PanningMode="VerticalOnly">
             <TreeView x:Name="MainTreeView" HorizontalAlignment="Stretch" 
                       Margin="10" VerticalAlignment="Stretch" 

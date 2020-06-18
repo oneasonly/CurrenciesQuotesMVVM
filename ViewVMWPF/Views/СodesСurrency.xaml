@@ -12,7 +12,7 @@
         <StackPanel>
             <ListView ItemsSource="{Binding SourceValutes}" 
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
-                      MaxHeight="300"   
+                      MaxHeight="400"   
                       SelectionMode="Multiple"
                       ex:AttachedProperties.SelectedItems="{Binding SelectedValutes, Mode=TwoWay}"  
                       >

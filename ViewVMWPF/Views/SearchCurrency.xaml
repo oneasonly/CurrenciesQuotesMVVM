@@ -10,7 +10,7 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding InputSearch, UpdateSourceTrigger=PropertyChanged}"
-                     Width="100"/>
+                     Width="150" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Button Content="Поиск" Command="{Binding SearchCommand}"/>
             </StackPanel>
             <ListView ItemsSource="{Binding SearchQuotesResult}">
