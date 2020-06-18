@@ -7,6 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding InputSearch, UpdateSourceTrigger=PropertyChanged}"
+                     Width="100"/>
+                <Button Content="Поиск" Command="SearchCommand"/>
+            </StackPanel>
+            <ListView ItemsSource="{Binding ResultSearch}"/>
+        </StackPanel>
+          
     </Grid>
 </UserControl>
