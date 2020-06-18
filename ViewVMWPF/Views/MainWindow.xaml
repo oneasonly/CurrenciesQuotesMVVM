@@ -42,6 +42,16 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Обновлено:"/>
+                <Label Content="{Binding ResponseRoot}">
+                    <Label.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Date}"/>
+                        </DataTemplate>
+                    </Label.ContentTemplate>
+                </Label>
+            </StackPanel>
             <view:ExchangeRates DataContext="{Binding VMExchangeRate}"/>
             <view:Conversion DataContext="{Binding VMConversion}"/>
             <view:SearchCurrency DataContext="{Binding VMSearchCurrency}"/>
