@@ -9,6 +9,7 @@ namespace ViewVMWPF.Classes
 {
     public class PairValute
     {
+        private const string valueRatioFormat = "0.####";
         #region ctor
         public PairValute() { }
         public PairValute(CbrValute Valute1, CbrValute Valute2) : this()
@@ -31,7 +32,8 @@ namespace ViewVMWPF.Classes
         public CbrValute Valute2 { get; set; }
         public string NamePair => $"{Nominal1}{Valute1.CharCode} / {Nominal2}{Valute2.CharCode}";
         public decimal ValueRatio => Valute1.Value / Valute2.Value;
-        public string NameAndValue => $"{NamePair}  {ValueRatio.ToString("0.####")}";
+        public string ValueRatioFormatted => $"{ValueRatio.ToString(valueRatioFormat)}";
+        public string NameAndValue => $"{NamePair}  {ValueRatio.ToString(valueRatioFormat)}";
         #endregion
     }
 }
