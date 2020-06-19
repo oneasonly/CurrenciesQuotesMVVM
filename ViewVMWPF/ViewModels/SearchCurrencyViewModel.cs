@@ -69,10 +69,12 @@ namespace ViewVMWPF.ViewModels
             }
             else
             {
-                var matches = AllValutes.Where(x => x.Name.ToLower().Contains(InputSearch?.ToLower() ?? string.Empty));
-                if(matches.Count()==1)
+                var nameMatches = AllValutes.Where(x => x.Name.ToLower().Contains(InputSearch?.ToLower() ?? string.Empty));
+                var codeCharMatches = AllValutes.Where(x => x.CharCode.ToLower().Contains(InputSearch?.ToLower() ?? string.Empty));
+                var union = codeCharMatches.Union(nameMatches);
+                if (union.Count() == 1)
                 {
-                    searchResult = matches.FirstOrDefault();
+                    searchResult = union.FirstOrDefault();
                 }
             }
             BuildQuotesResult(searchResult);
