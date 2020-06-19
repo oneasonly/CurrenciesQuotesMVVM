@@ -16,7 +16,7 @@
             <ListView ItemsSource="{Binding SearchQuotesResult}">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{DynamicResource NoHeaderGridView}">
-                        <GridViewColumn 
+                        <GridViewColumn Width="150"
                             DisplayMemberBinding="{Binding NamePair}"/>
                         <GridViewColumn 
                             DisplayMemberBinding="{Binding ValueRatioFormatted}"/>

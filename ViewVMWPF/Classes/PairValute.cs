@@ -30,7 +30,7 @@ namespace ViewVMWPF.Classes
         #region public Properties
         public CbrValute Valute1 { get; set; }
         public CbrValute Valute2 { get; set; }
-        public string NamePair => $"{Nominal1}{Valute1.CharCode} / {Nominal2}{Valute2.CharCode}";
+        public string NamePair => $"{Nominal1} {Valute1.CharCode} / {Nominal2} {Valute2.CharCode}";
         public decimal ValueRatio => Valute1.Value / Valute2.Value;
         public string ValueRatioFormatted => $"{ValueRatio.ToString(valueRatioFormat)}";
         public string NameAndValue => $"{NamePair}  {ValueRatio.ToString(valueRatioFormat)}";
