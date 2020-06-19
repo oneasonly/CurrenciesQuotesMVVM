@@ -30,6 +30,11 @@
         <Setter Property="md:ScrollBarAssist.ButtonsVisibility" Value="Collapsed" />
     </Style>
 
+    <Style x:Key="NoHeaderGridView" TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="Width" Value="auto" />
+    </Style>
+
     <Style x:Key="{x:Type view:ExchangeRates}" 
                TargetType="view:ExchangeRates">
         <Setter Property="Margin" Value="10" />

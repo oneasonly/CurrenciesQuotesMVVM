@@ -14,11 +14,14 @@
                 <Button Content="Поиск" Command="{Binding SearchCommand}"/>
             </StackPanel>
             <ListView ItemsSource="{Binding SearchQuotesResult}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding NameAndValue}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{DynamicResource NoHeaderGridView}">
+                        <GridViewColumn 
+                            DisplayMemberBinding="{Binding NamePair}"/>
+                        <GridViewColumn 
+                            DisplayMemberBinding="{Binding ValueRatioFormatted}"/>
+                    </GridView>
+                </ListView.View>
             </ListView>
         </StackPanel>
           
