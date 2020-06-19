@@ -12,15 +12,21 @@
         <StackPanel>
             <ListView ItemsSource="{Binding SourceValutes}" 
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       MaxHeight="400"   
                       SelectionMode="Multiple"
                       ex:AttachedProperties.SelectedItems="{Binding SelectedValutes, Mode=TwoWay}"  
                       >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding CharCode}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{DynamicResource NoHeaderGridView}">
+                        <GridViewColumn 
+                            DisplayMemberBinding="{Binding CharCode}"/>
+                        <GridViewColumn 
+                            DisplayMemberBinding="{Binding NumCode}"/>
+                        <GridViewColumn 
+                            DisplayMemberBinding="{Binding Name}"/>
+                    </GridView>
+                </ListView.View>
 
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
