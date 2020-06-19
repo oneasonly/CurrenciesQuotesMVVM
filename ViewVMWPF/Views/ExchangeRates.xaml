@@ -22,7 +22,10 @@
                         <TextBlock Text="{Binding Name}" />
                         <HierarchicalDataTemplate.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding NameAndValue}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding NamePair}" Width="130" />
+                                    <TextBlock Text="{Binding ValueRatioFormatted}" />
+                                </StackPanel>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>
                     </HierarchicalDataTemplate>

@@ -12,7 +12,7 @@
             
             <StackPanel Orientation="Horizontal" >
                 
-                <ComboBox ItemsSource="{Binding ItemsSource}" Width="150"
+                <ComboBox ItemsSource="{Binding ItemsSource}" Width="60"
                           SelectedItem="{Binding Selected1}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -28,7 +28,7 @@
             
             <StackPanel Orientation="Horizontal" >
                 
-                <ComboBox ItemsSource="{Binding ItemsSource}" Width="150"
+                <ComboBox ItemsSource="{Binding ItemsSource}" Width="60"
                           SelectedValue="{Binding Selected2}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
