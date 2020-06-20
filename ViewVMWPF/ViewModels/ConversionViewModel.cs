@@ -44,14 +44,7 @@ namespace ViewVMWPF.ViewModels
             set
             {
                 SetProperty(ref _currencyAmount1, value);
-                decimal divisor = Selected2.Nominal * Selected2.Value;
-                if (divisor == 0) return;
-                decimal val1 = CurrencyAmount1 * Selected1.Nominal * Selected1.Value;
-                decimal val2 = val1 / divisor;
-                if (val2 != CurrencyAmount2)
-                {
-                    CurrencyAmount2 = val2;
-                }
+                SetInputbox2();
             }
         }
         public decimal CurrencyAmount2
@@ -59,17 +52,11 @@ namespace ViewVMWPF.ViewModels
             get => _currencyAmount2;
             set
             {
-                SetProperty(ref _currencyAmount2, value);                
-                decimal divisor = Selected1.Nominal * Selected1.Value;
-                if (divisor == 0) return;
-                decimal val2 = CurrencyAmount2 * Selected2.Nominal * Selected2.Value;
-                decimal val1 = val2 / divisor;
-                if (val1 != CurrencyAmount1)
-                {
-                    CurrencyAmount1 = val1;
-                }
+                SetProperty(ref _currencyAmount2, value);
+                SetInputbox1();
             }
         }
+
         public ObservableCollection<CbrValute> ItemsSource
         {
             get => _itemsSource;
@@ -77,12 +64,30 @@ namespace ViewVMWPF.ViewModels
         }
         #endregion
 
-        #region Commands Delegate
+        #region Methods
+        private void SetInputbox2()
+        {
+            decimal divisor = Selected2.Nominal * Selected2.Value;
+            if (divisor == 0) return;
+            decimal val1 = CurrencyAmount1 * Selected1.Nominal * Selected1.Value;
+            decimal val2 = val1 / divisor;
+            if (val2 != CurrencyAmount2)
+            {
+                CurrencyAmount2 = val2;
+            }
+        }
 
-        #endregion
-
-        #region private Methods
-
+        private void SetInputbox1()
+        {
+            decimal divisor = Selected1.Nominal * Selected1.Value;
+            if (divisor == 0) return;
+            decimal val2 = CurrencyAmount2 * Selected2.Nominal * Selected2.Value;
+            decimal val1 = val2 / divisor;
+            if (val1 != CurrencyAmount1)
+            {
+                CurrencyAmount1 = val1;
+            }
+        }
         #endregion
     }
 }
