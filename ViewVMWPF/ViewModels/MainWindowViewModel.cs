@@ -25,8 +25,7 @@ namespace ViewVMWPF.ViewModels
             VMCodesCurrency.CodeSelectionChangedEvent += OnSelectedValutesChanged;
             #region Commands
             UpdateCommand = new DelegateCommand(async () => await Update());
-            SelectedCodeToQuotesCommand = new DelegateCommand(SetSelectedCodesToQuotes);
-            Test1Command = new DelegateCommand(Test1Method);
+            SelectedCodeToQuotesCommand = new DelegateCommand(SetVmExchangeRateWithSelectedValutes);
             #endregion            
         }
         #endregion
@@ -34,6 +33,7 @@ namespace ViewVMWPF.ViewModels
         #region fields
         private ModelCurrencies _model = new ModelCurrencies();
         private Cbr _responseRoot = new Cbr();
+        ObservableCollection<CbrValute> _allValutes = new ObservableCollection<CbrValute>();
         private List<CbrValute> _preferedCurrencies = new List<CbrValute>();
         #endregion
 
@@ -50,10 +50,12 @@ namespace ViewVMWPF.ViewModels
             get => _responseRoot;
             set => SetProperty(ref _responseRoot, value);
         }
-
-        //public ObservableCollection<string> SelectedCodes => 
+        public ObservableCollection<CbrValute> AllValutes
+        {
+            get => _allValutes;
+            set => SetProperty(ref _allValutes, value);
+        }
         public ObservableCollection<CbrValute> SelectedValutes => VMCodesCurrency.SelectedValutes;
-        public ObservableCollection<CbrValute> AllValutes => new ObservableCollection<CbrValute>(ResponseRoot?.Valute?.Values.ToList());
         public List<CbrValute> PreferedCurrenies
         {
             get => _preferedCurrencies;
@@ -64,66 +66,63 @@ namespace ViewVMWPF.ViewModels
         #region Commands Delegates
         public DelegateCommand UpdateCommand { get; }
         public DelegateCommand SelectedCodeToQuotesCommand { get; }
-        public DelegateCommand Test1Command { get; }
         #endregion
 
-        #region Commands Methods
+        #region Methods
         private async Task Update()
         {
             await GetRootResponse();
-            SetAllValutesFromResponse();
-            //SetSelectedCodes();
-        }
-        private void Test1Method()
-        {
-            SetSelectedCodesToQuotes();
-        }
-        #endregion
+            AllValutes = GetAllValutes();
 
-        #region private Methods
+            BuildPreferedCurrencies();
+            SetupViewmodelsWithDataSources();
+            SetVmExchangeRateWithSelectedValutes();
+            SetVmConversionPreferedSortedValuteList();            
+        }
         private async Task GetRootResponse()
         {
             ResponseRoot = await _model.GetResponseJsonWithDefault();
-            BuildPreferedCurrencies();
         }
-
+        private ObservableCollection<CbrValute> GetAllValutes()
+        {
+            var list = ResponseRoot?.Valute?.Values;
+            return new ObservableCollection<CbrValute>(list?.ToList() ?? new List<CbrValute>());
+        }
+        private ObservableCollection<CbrValute> GetPreferedSelectedValutes()
+        {
+            return new ObservableCollection<CbrValute>(PreferedCurrenies?.Union(SelectedValutes));
+        }
         private void BuildPreferedCurrencies()
         {
             PreferedCurrenies.Clear();
             PreferedCurrenies.Add(_model.DefaultCurrency);
             var preferedRange = AllValutes.Where(x => _model.PreferedCurrencyCodes.Contains(x.NumCode));
             PreferedCurrenies.AddRange(preferedRange);
-
-            VMSearchCurrency.PreferedCurrenies = PreferedCurrenies;
         }
-
-        private void SetAllValutesFromResponse()
+        private void SetupViewmodelsWithDataSources()
         {
             VMCodesCurrency.SourceValutes = AllValutes;
             VMSearchCurrency.AllValutes = AllValutes;
-            OnAllAndSelectedValutesChanged();
+            VMSearchCurrency.PreferedCurrenies = PreferedCurrenies;                                    
         }
         private void OnSelectedValutesChanged()
         {
-            SetSelectedCodesToQuotes();
-            OnAllAndSelectedValutesChanged();
+            SetVmExchangeRateWithSelectedValutes();
+            SetVmConversionPreferedSortedValuteList();
         }
-        private void OnAllAndSelectedValutesChanged()
+        private void SetVmConversionPreferedSortedValuteList()
         {
-            var unionList = PreferedCurrenies.Union(SelectedValutes.Union(AllValutes));
-            VMConversion.ItemsSource = new ObservableCollection<CbrValute>(unionList);
-            SetSelectedCodesToQuotes();
+            var unionList = GetPreferedSelectedValutes().Union(AllValutes);
+            VMConversion.ItemsSource = new ObservableCollection<CbrValute>(unionList);            
         }
-        private void SetSelectedCodesToQuotes()
+        private void SetVmExchangeRateWithSelectedValutes()
         {
-            var unionList = PreferedCurrenies.Union(SelectedValutes);
             var quotesList = new ObservableCollection<Quotes>();
-            foreach (CbrValute item in unionList)
+            foreach (CbrValute item in GetPreferedSelectedValutes())
             {
-                //QuotLine
                 Quotes quot = new Quotes();
                 quot.MainCurrency = item;
-                foreach (CbrValute item2 in unionList)
+                foreach (CbrValute item2 in GetPreferedSelectedValutes())
                 {
                     if(item != item2)
                         quot.QuotesList.Add(new PairValute(item, item2));
