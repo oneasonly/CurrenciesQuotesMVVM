@@ -4,6 +4,20 @@
                     xmlns:view="clr-namespace:ViewVMWPF.Views"
                     xmlns:local="clr-namespace:ViewVMWPF.Styles">
 
+    <HierarchicalDataTemplate ItemsSource="{Binding QuotesList}"
+                              x:Key="TreeViewExchangeRatesTemplate">
+        <TextBlock Text="{Binding Name}" />
+        <HierarchicalDataTemplate.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding NamePair}" Width="130" />
+                    <TextBlock Text="{Binding ValueRatioFormatted}" />
+                </StackPanel>
+            </DataTemplate>
+        </HierarchicalDataTemplate.ItemTemplate>
+    </HierarchicalDataTemplate>
+
+
     <Style x:Key="{x:Type Button}" 
                TargetType="Button" 
                BasedOn="{StaticResource MaterialDesignRaisedButton}"           

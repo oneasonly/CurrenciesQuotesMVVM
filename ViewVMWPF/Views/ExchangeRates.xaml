@@ -16,20 +16,8 @@
             <TreeView x:Name="MainTreeView" HorizontalAlignment="Stretch" 
                       Margin="10" VerticalAlignment="Stretch" 
                       ItemsSource="{Binding SourceQuotes}"
+                      ItemTemplate="{DynamicResource TreeViewExchangeRatesTemplate}"
                       >
-                <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding QuotesList}">
-                        <TextBlock Text="{Binding Name}" />
-                        <HierarchicalDataTemplate.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding NamePair}" Width="130" />
-                                    <TextBlock Text="{Binding ValueRatioFormatted}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </HierarchicalDataTemplate.ItemTemplate>
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
             </TreeView>
         </ScrollViewer>
     </Grid>
