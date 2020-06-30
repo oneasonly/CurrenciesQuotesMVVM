@@ -6,6 +6,7 @@
         <ResourceDictionary Source="/ViewVMWPF;component/Styles/GeneralStyle.xaml"/>
         <ResourceDictionary Source="/ViewVMWPF;component/Styles/ToogleButton.xaml"/>
         <ResourceDictionary Source="/ViewVMWPF;component/Styles/TreeViewItem.xaml"/>
+        <ResourceDictionary Source="/ViewVMWPF;component/Styles/Brushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>
