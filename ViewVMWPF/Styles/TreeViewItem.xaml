@@ -59,7 +59,7 @@
                             </MultiTrigger.Conditions>
                         </MultiTrigger>
                         <Trigger Property="IsSelected" Value="true">
-                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource RowSelectorBrush}"/>
+                            <Setter TargetName="Bd" Property="Background" Value="LightBlue"/>
                         </Trigger>
                         <Trigger Property="HasItems" Value="false">
                             <Setter TargetName="Expander" Property="Visibility" Value="Hidden"/>
