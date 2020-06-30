@@ -12,7 +12,7 @@
         Title="MainWindow" Height="700" Width="800">
 
     <Window.Resources>
-        <ResourceDictionary Source="/ViewVMWPF;component/Styles/GeneralStyle.xaml"/>
+        <ResourceDictionary Source="/ViewVMWPF;component/Styles/AllMergedStyles.xaml"/>
     </Window.Resources>
 
     <i:Interaction.Triggers>

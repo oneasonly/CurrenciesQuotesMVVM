@@ -4,32 +4,18 @@
                     xmlns:view="clr-namespace:ViewVMWPF.Views"
                     xmlns:local="clr-namespace:ViewVMWPF.Styles">
 
-    <HierarchicalDataTemplate ItemsSource="{Binding QuotesList}"
-                              x:Key="TreeViewExchangeRatesTemplate">
-        <TextBlock Text="{Binding Name}" />
-        <HierarchicalDataTemplate.ItemTemplate>
-            <DataTemplate>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding NamePair}" Width="130" />
-                    <TextBlock Text="{Binding ValueRatioFormatted}" />
-                </StackPanel>
-            </DataTemplate>
-        </HierarchicalDataTemplate.ItemTemplate>
-    </HierarchicalDataTemplate>
-
-
     <Style x:Key="{x:Type Button}" 
-               TargetType="Button" 
-               BasedOn="{StaticResource MaterialDesignRaisedButton}"           
+               TargetType="Button"                         
                >
+        <!--BasedOn="{StaticResource MaterialDesignRaisedButton}"-->
         <Setter Property="Margin" Value="4" />
-        <Setter Property="md:ButtonAssist.CornerRadius" Value="10 10 10 10" />
+        <!--<Setter Property="md:ButtonAssist.CornerRadius" Value="10 10 10 10" />-->
     </Style>
 
     <Style x:Key="{x:Type ComboBox}" 
-               TargetType="ComboBox" 
-               BasedOn="{StaticResource MaterialDesignComboBox}"
+               TargetType="ComboBox"                
                >
+        <!--BasedOn="{StaticResource MaterialDesignComboBox}"-->
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -37,11 +23,11 @@
     </Style>
 
     <Style x:Key="{x:Type ScrollBar}" 
-               TargetType="ScrollBar" 
-               BasedOn="{StaticResource MaterialDesignScrollBar}"           
+               TargetType="ScrollBar"                        
                >
-        <Setter Property="md:ScrollBarAssist.ThumbCornerRadius" Value="15" />
-        <Setter Property="md:ScrollBarAssist.ButtonsVisibility" Value="Collapsed" />
+        <!--BasedOn="{StaticResource MaterialDesignScrollBar}"-->
+        <!--<Setter Property="md:ScrollBarAssist.ThumbCornerRadius" Value="15" />-->
+        <!--<Setter Property="md:ScrollBarAssist.ButtonsVisibility" Value="Collapsed" />-->
     </Style>
 
     <Style x:Key="NoHeaderGridView" TargetType="{x:Type GridViewColumnHeader}">
@@ -53,28 +39,28 @@
                TargetType="view:ExchangeRates">
         <Setter Property="Margin" Value="10" />
         <Setter Property="BorderThickness" Value="1.5" />
-        <Setter Property="BorderBrush" Value="{StaticResource PrimaryHueDarkBrush}" />
+        <!--<Setter Property="BorderBrush" Value="{StaticResource PrimaryHueDarkBrush}" />-->
     </Style>
     
     <Style x:Key="{x:Type view:Conversion}" 
                TargetType="view:Conversion">
         <Setter Property="Margin" Value="10" />
         <Setter Property="BorderThickness" Value="1.5" />
-        <Setter Property="BorderBrush" Value="{StaticResource PrimaryHueDarkBrush}" />
+        <!--<Setter Property="BorderBrush" Value="{StaticResource PrimaryHueDarkBrush}" />-->
     </Style>
 
     <Style x:Key="{x:Type view:СodesСurrency}" 
                TargetType="view:СodesСurrency">
         <Setter Property="Margin" Value="10" />
         <Setter Property="BorderThickness" Value="1.5" />
-        <Setter Property="BorderBrush" Value="{StaticResource PrimaryHueDarkBrush}" />
+        <!--<Setter Property="BorderBrush" Value="{StaticResource PrimaryHueDarkBrush}" />-->
     </Style>
 
     <Style x:Key="{x:Type view:SearchCurrency}" 
                TargetType="view:SearchCurrency">
         <Setter Property="Margin" Value="10" />
         <Setter Property="BorderThickness" Value="1.5" />
-        <Setter Property="BorderBrush" Value="{StaticResource PrimaryHueDarkBrush}" />
+        <!--<Setter Property="BorderBrush" Value="{StaticResource PrimaryHueDarkBrush}" />-->
     </Style>
 
 </ResourceDictionary>

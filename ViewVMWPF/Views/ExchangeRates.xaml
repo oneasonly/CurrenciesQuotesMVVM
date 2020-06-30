@@ -11,9 +11,10 @@
     <Grid >
         <ScrollViewer VerticalScrollBarVisibility="Auto" 
                       CanContentScroll="True"
+                      Background="Transparent"
                       MaxHeight="300"
                       PanningMode="VerticalOnly">
-            <TreeView x:Name="MainTreeView" HorizontalAlignment="Stretch" 
+            <TreeView x:Name="MainTreeView" HorizontalAlignment="Stretch"  
                       Margin="10" VerticalAlignment="Stretch" 
                       ItemsSource="{Binding SourceQuotes}"
                       ItemTemplate="{DynamicResource TreeViewExchangeRatesTemplate}"
